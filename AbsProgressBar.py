@@ -1,5 +1,5 @@
 import math
-
+import time
 class AbsProgressBar:
     """Creates a progress bar, with the ability to specify the maximum buffer size and the size of the progress bar"""
     # Author https://github.com/MrAbsurdick
@@ -13,15 +13,17 @@ class AbsProgressBar:
         self.S_Load_0 = '█' # Load Line Symbol
         self.S_Load_3 = '░' # Load Line Symbol
         
+        self.__calc = lambda value: round(self.value + value, 3)
+
     def update(self, value:int) -> bool:
         """Changing the progress value"""
         # If (no_limit==True) perform action
         if self.no_limit:
-            self.value += value
+            self.value = self.__calc(value)
             return True
         # If the maximum value is not exceeded
-        elif 0 <= self.value + value <= self.max_value:
-            self.value += value
+        elif 0 <= (__value:=self.__calc(value)) <= self.max_value:
+            self.value = __value
             return True
         # If none of the conditions are met
         else:
