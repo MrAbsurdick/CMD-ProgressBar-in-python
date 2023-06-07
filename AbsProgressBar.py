@@ -1,5 +1,4 @@
 import math
-import time
 class AbsProgressBar:
     """Creates a progress bar, with the ability to specify the maximum buffer size and the size of the progress bar"""
     # Author https://github.com/MrAbsurdick
